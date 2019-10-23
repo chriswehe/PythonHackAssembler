@@ -58,19 +58,30 @@ class Parser:
             begginingOfDest = None
             endOfDest = None
 
-            if self.current_line.find("="):
-                begginingOfDest = self.current_line.find("=")+1
+            if "=" in self.current_line:
+                begginingOfDest = self.current_line.find("=")
             else:
                 begginingOfDest = 0
             
-            if self.current_line.find(";"):
+            if ";" in self.current_line:
                 endOfDest = self.current_line.find(";")
-                print(self.current_line.find(";"))
             else:
-                print('fuck')
-                endOfDest = (len(self.current_line)+1)
+                endOfDest = (len(self.current_line))
             
             dest = self.current_line[begginingOfDest:endOfDest]
             return dest
+    
+    def jump(self):
+        jump = None
+
+        if self.commandType() == "C_COMMAND":
+            if ";" in self.current_line:
+                begginingOfDest = self.current_line.find(";")+1
+                endOfDest = len(self.current_line)
+
+                jump = self.current_line[begginingOfDest:endOfDest]
+                return jump
+    
+
 
 
