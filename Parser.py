@@ -51,6 +51,10 @@ class Parser:
             if "=" in self.current_line:
                 dest = self.current_line[0:self.current_line.find("=")]
                 return dest
+            else:
+                return "null"
+        else:
+            return "null"
 
     def comp(self):
         if (self.commandType() == "C_COMMAND"):
@@ -70,6 +74,7 @@ class Parser:
             
             dest = self.current_line[begginingOfDest:endOfDest]
             return dest
+        return "null"
     
     def jump(self):
         jump = None
@@ -81,6 +86,10 @@ class Parser:
 
                 jump = self.current_line[begginingOfDest:endOfDest]
                 return jump
+            else:
+                return "null"
+        else:
+            return "null"
     
 
 

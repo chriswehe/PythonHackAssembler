@@ -1,5 +1,6 @@
 from Parser import Parser
 from CodeModule import CodeModule
+from SymbolTableModule import SymbolModule
 
 code = """@0
 MD=M-1
@@ -8,6 +9,7 @@ code_array = code.split("\n")
 
 parser = Parser(code_array)
 CodeModule = CodeModule()
+SymbolModule = SymbolModule()
 
 # parser.printArray()
 # parser.printArrayLen()
@@ -33,6 +35,15 @@ CodeModule = CodeModule()
 # print(parser.comp())
 # print(parser.jump())
 
-print(CodeModule.jumpMap)
+# # code module test
+# print(CodeModule.jumpMap)
 
-print(CodeModule.jump("JEQ"))
+# print(CodeModule.jump("JEQ"))
+
+# symbol table module test
+
+print(SymbolModule.symbolTable)
+SymbolModule.addEntry("R16", 16)
+print(SymbolModule.symbolTable)
+
+print(SymbolModule.getAddress("R16"))
