@@ -3,6 +3,8 @@ from CodeModule import CodeModule
 from SymbolTableModule import SymbolModule
 
 code = """@0
+D;JLE
+MD=M-1
 """
 
 def assembler(codeString):
@@ -16,15 +18,15 @@ def assembler(codeString):
         print('hello')
         machineCode = None
         if parser1.commandType() == "C_COMMAND":
-            print("hello")
+            print("c command")
             compCommand = codeModule.comp(parser1.comp())
             destCommand = codeModule.dest(parser1.dest())
             jumpCommand =  codeModule.jump(parser1.jump())
             machineCode = "0" + compCommand + destCommand + jumpCommand
         elif parser1.commandType() == "A_COMMAND":
-            print("hello")
+            print("a command")
         if (parser1.commandType() == "C_COMMAND") or (parser1.commandType() == "A_COMMAND"):
-            new_code_array[counter] = "hello"
+            new_code_array[counter] = machineCode
             counter = counter + 1
             parser1.advance()
             print('bye')
