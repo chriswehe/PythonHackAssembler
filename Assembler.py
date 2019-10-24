@@ -2,9 +2,31 @@ from Parser import Parser
 from CodeModule import CodeModule
 from SymbolTableModule import SymbolModule
 
-code = """MD=M-1
+code = """@0
+D=M
+@23
 D;JLE
+@16
+M=D
+@16384
+D=A
+@17
+M=D
+@17
+A=M
+M=-1
+@17
+D=M
+@32
+D=D+A
+@17
+M=D
+@16
 MD=M-1
+@10
+D;JGT
+@23
+0;JMP
 """
 
 def assembler(codeString):
@@ -24,10 +46,10 @@ def assembler(codeString):
             machineCode = compCommand + destCommand + jumpCommand
             print(machineCode)
         elif parser1.commandType() == "A_COMMAND":
-            
+            num = parser1.symbol()
+            machineCode = '{0:016b}'.format(int(num))
         if (parser1.commandType() == "C_COMMAND") or (parser1.commandType() == "A_COMMAND"):
-            print('bye')
-            new_code_array.append = machineCode
+            new_code_array.append(machineCode)
             counter = counter + 1
             parser1.advance()
 

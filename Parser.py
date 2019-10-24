@@ -1,7 +1,7 @@
 class Parser:
     def __init__(self, code_array):
         self.code_array = code_array
-        self.array_length = len(self.code_array)
+        self.array_length = len(self.code_array) - 1
         self.array_postn = 0
         self.current_line = self.code_array[0]
 
