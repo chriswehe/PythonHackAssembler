@@ -63,7 +63,7 @@ class Parser:
             endOfDest = None
 
             if "=" in self.current_line:
-                begginingOfDest = self.current_line.find("=")
+                begginingOfDest = self.current_line.find("=") + 1
             else:
                 begginingOfDest = 0
             
