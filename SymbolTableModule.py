@@ -37,5 +37,8 @@ class SymbolModule:
         if (symbol in self.symbolTable) == False:
             self.symbolTable[symbol] = address
     
+	# def contains(self, symbol):
+	# 	return (symbol in self.symbolTable)
+
     def getAddress(self, symbol):
         return self.symbolTable[symbol]

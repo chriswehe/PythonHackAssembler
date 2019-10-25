@@ -4,38 +4,61 @@ from SymbolTableModule import SymbolModule
 
 code = """@0
 D=M
-@23
+@INFINITE_LOOP
 D;JLE
-@16
+@counter
 M=D
-@16384
+@SCREEN
 D=A
-@17
+@address
 M=D
-@17
+(LOOP)
+@address
 A=M
 M=-1
-@17
+@address
 D=M
 @32
 D=D+A
-@17
+@address
 M=D
-@16
+@counter
 MD=M-1
-@10
+@LOOP
 D;JGT
-@23
+(INFINITE_LOOP)
+(hellothere)
+@INFINITE_LOOP
 0;JMP
 """
 
 def assembler(codeString):
     code_array = codeString.split("\n")
     parser1 = Parser(code_array)
+    parser2 = Parser(code_array)
+    parser3 = Parser(code_array)
     codeModule = CodeModule()
+    symbolModule = SymbolModule()
     counter = 0
     new_code_array = []
-    final_code = ""
+    current_symbol_address = 0
+
+    while parser2.hasMoreCommands():
+        if parser2.commandType() == "L_COMMAND":
+            symbolModule.addEntry(parser2.symbol(), current_symbol_address)
+            current_symbol_address = current_symbol_address - 1
+        current_symbol_address = current_symbol_address + 1
+        parser2.advance()
+        
+    print(symbolModule.symbolTable)
+
+    while parser3.hasMoreCommands():
+        if parser2.commandType() == "A_COMMAND":
+            try:
+                pass
+            except expression as identifier:
+                pass
+
 
     while parser1.hasMoreCommands():
         machineCode = None
@@ -51,8 +74,7 @@ def assembler(codeString):
             new_code_array.append(machineCode)
             counter = counter + 1
             parser1.advance()
-    for line in new_code_array:
-        final_code = final_code + line + "\n"
-    return final_code
+
+    return new_code_array
 
 print(assembler(code))
